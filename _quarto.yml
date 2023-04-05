@@ -13,6 +13,7 @@ book:
   chapters:
     - index.qmd
     - 01-intro.qmd
+    - 02-just-enough-R.qmd
     - 10-ASMA.qmd
   # appendices:
   #  - A1-appendix.qmd

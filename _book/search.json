@@ -21,17 +21,45 @@
     "text": "2.3 ICAO GANP KPIs"
   },
   {
+    "objectID": "02-just-enough-R.html",
+    "href": "02-just-enough-R.html",
+    "title": "3  Data Analysis with R/RStudio - Just Enough R",
+    "section": "",
+    "text": "Objectives\n\n\n\nThe goal of this course is not to provide deep expert level on scripting/codeing. With increasing data literacy many professionals will acquire skills in one or the other area. This booklet assumes no pre-knowledge. For a start-from-scratch, we recommend to use the R-ecosystem. It provides tools and useful packages that lower the entry barrier to scripting/coding."
+  },
+  {
+    "objectID": "02-just-enough-R.html#data-analytics-in-performance-monitoring",
+    "href": "02-just-enough-R.html#data-analytics-in-performance-monitoring",
+    "title": "3  Data Analysis with R/RStudio - Just Enough R",
+    "section": "3.1 Data Analytics in Performance Monitoring",
+    "text": "3.1 Data Analytics in Performance Monitoring\n\n3.1.1 Where do we come from?\nThroughout the recent years, there has been a strong increase in “data-driven” analytics. Data literarcy has increased.\nA variety of software solutions and products are available requiring a varying level of skills:\n\nMS Excel - Excel is one of the standard application of Microsoft’s Office applications. It provides users with a multitude of click-and-point features that support the analyst/user both in terms of data analytics and visualisations.\nTableau\nPower BI\ndedicated business analytics software suites, e.g. SAS\n\n\n\n3.1.2 Data analytics / data science - coding and scripting\nThere is no one-size-fits-all and the nature of performance monitoring might require further developments, deep-dive analyses or case-studies that pose challenges to one or the other product. Accordingly, building skills in terms of data analytics, including capabilities to script is an investment with a guaranteed return-on-investment."
+  },
+  {
+    "objectID": "02-just-enough-R.html#r-crashcourse-for-hands-on-session",
+    "href": "02-just-enough-R.html#r-crashcourse-for-hands-on-session",
+    "title": "3  Data Analysis with R/RStudio - Just Enough R",
+    "section": "3.2 R Crashcourse for hands-on session",
+    "text": "3.2 R Crashcourse for hands-on session\nThe material presented in this booklet builds on a set of packages in the R-ecosystem referenced as the tidyverse. A strong point for using this set of packages is that it lowers the entry threshold for professionals with no or little background in coding (or software engineering).\n\n3.2.1 How to get R/RStudio?\n…\n\n\n3.2.2 Learning to walk - some base-R\n…\n\n\n3.2.3 Tidyverse\n\n\n3.2.4 Output formats"
+  },
+  {
+    "objectID": "02-just-enough-R.html#summary",
+    "href": "02-just-enough-R.html#summary",
+    "title": "3  Data Analysis with R/RStudio - Just Enough R",
+    "section": "3.3 Summary",
+    "text": "3.3 Summary\nPerformance analysis comprises an essential part of data analytics, and ultimately skills to process and manipulate data. On a basic level, products like MS Excel will be a good start. More advanced tools (e.g. Tableau, MS Power BI) will be useful to master. Nonetheless there is a space for beyond-Excel and before dedicated software suites that allow an analyst to assess, evaluate, and further develop the existing indicators, or validate and refine algorithms. This booklet recommends the R-ecosystem and the tidyverse {packages}. This combination will enable novices and professional with no to little background in coding (or software engineering) to produce relevant data (analytical) products with a reasonable learning curve.\nThe chapter introduced “just enough R” by focussing on some key commands and data structures, introducing the key functions for data manipulation of the tidyverse, providing and utilising a key set of functions useful for the data analytical algorithms of the GANP KPIs. Obviously, this booklet and chapter cannot cover all the aspects of scripting with R. But the reader should have a solid understanding to master the content of this booklet.\nFor the interested reader there is no shortage of complementary tutorials for using and mastering R and its packages."
+  },
+  {
     "objectID": "10-ASMA.html#data-preparation",
     "href": "10-ASMA.html#data-preparation",
-    "title": "3  Additional time in terminal airspace",
-    "section": "3.2 Data preparation",
-    "text": "3.2 Data preparation"
+    "title": "4  Additional time in terminal airspace",
+    "section": "4.2 Data preparation",
+    "text": "4.2 Data preparation"
   },
   {
     "objectID": "10-ASMA.html#algorithm",
     "href": "10-ASMA.html#algorithm",
-    "title": "3  Additional time in terminal airspace",
-    "section": "3.3 Algorithm",
-    "text": "3.3 Algorithm"
+    "title": "4  Additional time in terminal airspace",
+    "section": "4.3 Algorithm",
+    "text": "4.3 Algorithm"
   }
 ]

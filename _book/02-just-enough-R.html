@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Operational Performance - 3&nbsp; Data Analysis with R/RStudio - Just Enough R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./10-ASMA.html" rel="next">
+<link href="./01-intro.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Analysis with R/RStudio - Just Enough R</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Operational Performance</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-just-enough-R.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Analysis with R/RStudio - Just Enough R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-ASMA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Additional time in terminal airspace</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#data-analytics-in-performance-monitoring" id="toc-data-analytics-in-performance-monitoring" class="nav-link active" data-scroll-target="#data-analytics-in-performance-monitoring"> <span class="header-section-number">3.1</span> Data Analytics in Performance Monitoring</a>
+  <ul class="collapse">
+  <li><a href="#where-do-we-come-from" id="toc-where-do-we-come-from" class="nav-link" data-scroll-target="#where-do-we-come-from"> <span class="header-section-number">3.1.1</span> Where do we come from?</a></li>
+  <li><a href="#data-analytics-data-science---coding-and-scripting" id="toc-data-analytics-data-science---coding-and-scripting" class="nav-link" data-scroll-target="#data-analytics-data-science---coding-and-scripting"> <span class="header-section-number">3.1.2</span> Data analytics / data science - coding and scripting</a></li>
+  </ul></li>
+  <li><a href="#r-crashcourse-for-hands-on-session" id="toc-r-crashcourse-for-hands-on-session" class="nav-link" data-scroll-target="#r-crashcourse-for-hands-on-session"> <span class="header-section-number">3.2</span> R Crashcourse for hands-on session</a>
+  <ul class="collapse">
+  <li><a href="#how-to-get-rrstudio" id="toc-how-to-get-rrstudio" class="nav-link" data-scroll-target="#how-to-get-rrstudio"> <span class="header-section-number">3.2.1</span> How to get R/RStudio?</a></li>
+  <li><a href="#learning-to-walk---some-base-r" id="toc-learning-to-walk---some-base-r" class="nav-link" data-scroll-target="#learning-to-walk---some-base-r"> <span class="header-section-number">3.2.2</span> Learning to walk - some base-R</a></li>
+  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse"> <span class="header-section-number">3.2.3</span> Tidyverse</a></li>
+  <li><a href="#output-formats" id="toc-output-formats" class="nav-link" data-scroll-target="#output-formats"> <span class="header-section-number">3.2.4</span> Output formats</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"> <span class="header-section-number">3.3</span> Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Analysis with R/RStudio - Just Enough R</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Objectives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The goal of this course is not to provide deep expert level on scripting/codeing. With increasing data literacy many professionals will acquire skills in one or the other area. This booklet assumes no pre-knowledge. For a start-from-scratch, we recommend to use the R-ecosystem. It provides tools and useful packages that lower the entry barrier to scripting/coding.</p>
+</div>
+</div>
+<section id="data-analytics-in-performance-monitoring" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="data-analytics-in-performance-monitoring"><span class="header-section-number">3.1</span> Data Analytics in Performance Monitoring</h2>
+<section id="where-do-we-come-from" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="where-do-we-come-from"><span class="header-section-number">3.1.1</span> Where do we come from?</h3>
+<p>Throughout the recent years, there has been a strong increase in “data-driven” analytics. Data literarcy has increased.</p>
+<p>A variety of software solutions and products are available requiring a varying level of skills:</p>
+<ul>
+<li><p><strong>MS Excel</strong> - Excel is one of the standard application of Microsoft’s Office applications. It provides users with a multitude of click-and-point features that support the analyst/user both in terms of data analytics and visualisations.</p></li>
+<li><p>Tableau</p></li>
+<li><p>Power BI</p></li>
+<li><p>dedicated business analytics software suites, e.g.&nbsp;SAS</p></li>
+</ul>
+</section>
+<section id="data-analytics-data-science---coding-and-scripting" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="data-analytics-data-science---coding-and-scripting"><span class="header-section-number">3.1.2</span> Data analytics / data science - coding and scripting</h3>
+<p>There is no <em>one-size-fits-all</em> and the nature of performance monitoring might require further developments, deep-dive analyses or case-studies that pose challenges to one or the other product. Accordingly, building skills in terms of data analytics, including capabilities to <em>script</em> is an investment with a guaranteed return-on-investment.</p>
+</section>
+</section>
+<section id="r-crashcourse-for-hands-on-session" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="r-crashcourse-for-hands-on-session"><span class="header-section-number">3.2</span> R Crashcourse for hands-on session</h2>
+<p>The material presented in this booklet builds on a set of packages in the R-ecosystem referenced as the <strong>tidyverse</strong>. A strong point for using this set of packages is that it lowers the entry threshold for professionals with no or little background in coding (or software engineering).</p>
+<section id="how-to-get-rrstudio" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="how-to-get-rrstudio"><span class="header-section-number">3.2.1</span> How to get R/RStudio?</h3>
+<p>…</p>
+</section>
+<section id="learning-to-walk---some-base-r" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="learning-to-walk---some-base-r"><span class="header-section-number">3.2.2</span> Learning to walk - some base-R</h3>
+<p>…</p>
+</section>
+<section id="tidyverse" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">3.2.3</span> Tidyverse</h3>
+</section>
+<section id="output-formats" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="output-formats"><span class="header-section-number">3.2.4</span> Output formats</h3>
+</section>
+</section>
+<section id="summary" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.3</span> Summary</h2>
+<p>Performance analysis comprises an essential part of data analytics, and ultimately skills to process and manipulate data. On a basic level, products like MS Excel will be a good start. More advanced tools (e.g.&nbsp;Tableau, MS Power BI) will be useful to master. Nonetheless there is a space for <em>beyond-Excel</em> and before <em>dedicated software suites</em> that allow an analyst to assess, evaluate, and further develop the existing indicators, or validate and refine algorithms. This booklet recommends the <strong>R-ecosystem</strong> and the <strong>tidyverse</strong> {packages}. This combination will enable novices and professional with no to little background in coding (or software engineering) to produce relevant data (analytical) products with a reasonable learning curve.</p>
+<p>The chapter introduced “just enough R” by focussing on some key commands and data structures, introducing the key functions for data manipulation of the tidyverse, providing and utilising a key set of functions useful for the data analytical algorithms of the GANP KPIs. Obviously, this booklet and chapter cannot cover all the aspects of scripting with R. But the reader should have a solid understanding to master the content of this booklet.</p>
+<p>For the interested reader there is no shortage of complementary tutorials for using and mastering R and its packages.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./01-intro.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./10-ASMA.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Additional time in terminal airspace</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
