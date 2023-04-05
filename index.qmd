@@ -1,0 +1,13 @@
+---
+title: "Preface"
+---
+
+# Preface {.unnumbered}
+
+## Overview
+
+This booklet has been developed in support of the cooperation with international partners interested in developing data analytical capabilities for monitoring operational performance.
+
+The material builds on the ICAO GANP KPIs.
+
+The booklet and its modules has been adapted to address the questions and topics raised throughout a series of sessions on the ICAO GANP KPIs.
