@@ -1,0 +1,95 @@
+---
+title: "x_Thailand.qmd"
+execute: 
+  echo: false
+---
+
+```{r}
+library(tidyverse)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(sf)
+```
+
+```{r}
+## helper function to query apt info
+get_apt_info <- function(.icao){
+  request <- httr::GET("https://www.airport-data.com/api/ap_info.json", query = list(icao=.icao))
+  payload <- jsonlite::fromJSON(rawToChar(request$content))
+  payload <- tibble::as_tibble(payload)
+  return(payload)
+}
+```
+
+VTBS Latitude: 13.685833 Longitude: 100.748889
+       
+
+```{r}
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+thailand <- world |> filter(iso_a3 == "THA")
+vtbs     <- get_apt_info("VTBS") |> st_as_sf(coords = c("longitude","latitude"), remove = FALSE, crs = 4326)
+vtbd     <- get_apt_info("VTBD") |> st_as_sf(coords = c("longitude","latitude"), remove = FALSE, crs = 4326)
+```
+
+```{r}
+ggplot() +
+  geom_sf(data = thailand) +
+  geom_sf(data = vtbs, color = "red") +
+  geom_sf(data = vtbd, color = "blue")
+```
+
+Identify bounding box
+
+```{r}
+vtbs_205 <- st_buffer(vtbs, units::set_units(205, nmile))
+vtbd_205 <- st_buffer(vtbd, units::set_units(205, nmile))
+
+p <- ggplot() +
+  geom_sf(data = thailand) +
+  geom_sf(data = vtbs, color = "red") +
+  geom_sf(data = vtbs_205, color = "red", fill = NA) +
+  geom_sf(data = vtbd, color = "blue") +
+  geom_sf(data = vtbd_205, color = "blue", fill = NA) +
+  coord_sf(xlim = c(96, 105), ylim = c(10,18), expand = FALSE)
+p
+```
+
+
+```{r}
+combi <- st_union(vtbs_205, vtbd_205) |> 
+  select(icao, country, geometry) |> 
+  mutate(icao = "VTBS+VTBD 205NM")
+vtbs_vtbd_bbox <- st_bbox(combi)
+
+p2 <- p + 
+  geom_sf(data = combi, fill = NA, color = "green") +
+  geom_sf(data = st_as_sfc(vtbs_vtbd_bbox), fill = NA, color = "green") +
+  coord_sf(xlim = c(96, 105), ylim = c(10,18), expand = FALSE)
+p2
+```
+
+Read in data for bounding box downloaded from OSN
+
+```{r}
+# path to data
+pth <- file.path(here::here() |> dirname(), "osn-download", "data-raw","VTBS_VTBD")
+fns <- list.files(path = pth, full.names = TRUE)
+```
+
+```{r}
+ds <- fns |> purrr::map_dfr(.f = ~ readr::read_csv(.x, show_col_types = FALSE))
+```
+
+```{r}
+p2 +
+  geom_point(data = ds, aes(x = lon, y = lat))
+```
+
+
+
+
+
+
+
+
